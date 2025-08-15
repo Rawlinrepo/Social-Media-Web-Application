@@ -48,7 +48,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
 // Ping route
-router.get("/ping", (req, res) => {
+app.get("/ping", (req, res) => {
     res.status(200).json({ message: "Backend is alive!" });
 });
 
