@@ -26,8 +26,8 @@ router.post("/register", async (req, res) => {
 
 router.get("/ping", (req, res) => {
     res.status(200).json({ message: "pong" });
+    console.log("pong");
 });
-
 
 //LOGIN
 router.post("/login", async (req, res) => {

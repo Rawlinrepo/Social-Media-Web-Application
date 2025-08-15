@@ -19,7 +19,12 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 
 console.log(mongoose.connection.readyState);
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: "http://51.20.134.254:3000",
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
