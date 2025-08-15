@@ -8,6 +8,8 @@ RUN npm install
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
+ENV NODE_ENV=production
+
 COPY . .
 
 EXPOSE 3000
