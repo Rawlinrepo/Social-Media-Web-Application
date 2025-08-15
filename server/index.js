@@ -47,6 +47,10 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
+// Ping route
+router.get("/ping", (req, res) => {
+    res.status(200).json({ message: "Backend is alive!" });
+});
 
 app.get("/", (req, res) => {
     res.send("Welcome to homepage")
