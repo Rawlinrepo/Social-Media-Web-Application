@@ -50,6 +50,7 @@ app.use("/api/posts", postRoute);
 // Ping route
 app.get("/ping", (req, res) => {
     res.status(200).json({ message: "Backend is alive!" });
+    console.log('pong')
 });
 
 app.get("/", (req, res) => {
