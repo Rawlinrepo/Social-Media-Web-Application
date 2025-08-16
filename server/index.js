@@ -43,9 +43,9 @@ app.post("/api/upload", upload.single("file"), (res, req) => {
     }
 });
 
-app.use("/users", userRoute);
+app.use("/api/users", userRoute);
 app.use("/auth", authRoute);
-app.use("/posts", postRoute);
+app.use("/api/posts", postRoute);
 
 // Ping route
 app.get("/ping", (req, res) => {
