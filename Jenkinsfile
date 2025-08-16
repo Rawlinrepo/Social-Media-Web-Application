@@ -13,13 +13,15 @@ pipeline{
                     credentialsId: 'DOCKER_CREDENTIALS', 
                     usernameVariable: 'USERNAME', 
                     passwordVariable: 'PASSWORD')]) {
-                sh 'docker login -u $USERNAME -p $PASSWORD'
-                dir('client') {
-                sh 'docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .'
-                }
-                dir('server') {
-                sh 'docker buildx build --tag $USERNAME/social-media-web-application:backend --push .'
-                }
+                sh '''
+                docker login -u $USERNAME -p $PASSWORD'
+                cd client
+                docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .'
+                cd ..
+                cd server
+                docker buildx build --tag $USERNAME/social-media-web-application:backend --push .'
+                cd ..
+                '''
                 }
             }
         }
