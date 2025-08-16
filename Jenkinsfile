@@ -14,12 +14,13 @@ pipeline{
                     usernameVariable: 'USERNAME', 
                     passwordVariable: 'PASSWORD')]) {
                 sh '''
+                docker buildx create --use --name multiarch
                 echo $PASSWORD | docker login -u $USERNAME --password-stdin
                 cd client
-                docker buildx build -t $USERNAME/social-media-web-application:frontend --push .
+                docker buildx build --platform linux/amd64 -t $USERNAME/social-media-web-application:frontend --push .
                 cd ..
                 cd server
-                docker buildx build -t $USERNAME/social-media-web-application:backend --push .
+                docker buildx build --platform linux/amd64 -t $USERNAME/social-media-web-application:backend --push .
                 cd ..
                 '''
                 }
