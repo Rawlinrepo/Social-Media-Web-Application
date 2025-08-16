@@ -15,10 +15,10 @@ pipeline{
                     passwordVariable: 'PASSWORD')]) {
                 sh 'docker login -u $USERNAME -p $PASSWORD'
                 dir('client') {
-                sh 'docker buildx build --tag $USERNAME/Social-Media-Web-Application:frontend --push .'
+                sh 'docker buildx build --tag $USERNAME/social-Media-Web-Application:frontend --push .'
                 }
                 dir('server') {
-                sh 'docker buildx build --tag $USERNAME/Social-Media-Web-Application:backend --push .'
+                sh 'docker buildx build --tag $USERNAME/social-Media-Web-Application:backend --push .'
                 }
                 }
             }
