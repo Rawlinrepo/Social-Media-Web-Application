@@ -16,8 +16,26 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8800:8800"
+    environment:
+      - MONGO_URL=mongodb://rawlin:rawlin@mongodb:27017/mydb&authSource=admin
     networks:
       - mynetwork
+    
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - mynetwork
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rawlin
+      - MONGO_INITDB_ROOT_PASSWORD=rawlin
+      - MONGO_INITDB_DATABASE=mydb
+    volumes:
+      - myvolume:/data/db
 
 networks:
   mynetwork:
+volumes:
+  myvolume:
