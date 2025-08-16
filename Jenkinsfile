@@ -19,7 +19,7 @@ pipeline{
                 docker build -t $USERNAME/social-media-web-application:frontend .
                 cd ..
                 cd server
-                docker buildx build -t $USERNAME/social-media-web-application:backend --load .
+                docker buildx build --platform linux/amd64,linux/arm64 -t $USERNAME/social-media-web-application:backend --load .
                 cd ..
                 '''
                 }
