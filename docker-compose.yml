@@ -17,7 +17,7 @@ services:
     ports:
       - "8800:8800"
     environment:
-      - MONGO_URL=mongodb://rawlin:rawlin@mongodb:27017/mydb&authSource=admin
+      - MONGO_URL=mongodb://rawlin:rawlin@mongodb:27017/mydb?authSource=admin
     networks:
       - mynetwork
     
