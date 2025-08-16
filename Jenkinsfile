@@ -16,10 +16,10 @@ pipeline{
                 sh '''
                 docker login -u $USERNAME -p $PASSWORD
                 cd client
-                docker buildx build -t $USERNAME/social-media-web-application:frontend --push .
+                docker build -t $USERNAME/social-media-web-application:frontend --load .
                 cd ..
                 cd server
-                docker buildx build -t $USERNAME/social-media-web-application:backend --push .
+                docker buildx build -t $USERNAME/social-media-web-application:backend --load .
                 cd ..
                 '''
                 }
