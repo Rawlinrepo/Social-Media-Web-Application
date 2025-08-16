@@ -16,10 +16,10 @@ pipeline{
                 sh '''
                 echo $PASSWORD | docker login -u $USERNAME --password-stdin
                 cd client
-                docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .
+                docker buildx build -t $USERNAME/social-media-web-application:frontend --push .
                 cd ..
                 cd server
-                docker buildx build --tag $USERNAME/social-media-web-application:backend --push .
+                docker buildx build -t $USERNAME/social-media-web-application:backend --push .
                 cd ..
                 '''
                 }
