@@ -14,7 +14,7 @@ pipeline{
                     usernameVariable: 'USERNAME', 
                     passwordVariable: 'PASSWORD')]) {
                 sh '''
-                docker login -u $USERNAME -p $PASSWORD
+                echo $PASSWORD | docker login -u $USERNAME --password-stdin
                 cd client
                 docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .
                 cd ..
