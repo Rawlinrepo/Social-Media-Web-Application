@@ -35,7 +35,12 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh 'docker compose up --build -d'
+                sh 'docker-compose up --build -d'
+            }
+        }
+        stage('cleanup'){
+            steps{
+                sh "docker rmi $USERNAME/social-media-web-application:backend $USERNAME/social-media-web-application:frontend"
             }
         }
     }
