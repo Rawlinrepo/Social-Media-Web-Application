@@ -13,15 +13,25 @@ pipeline{
                     credentialsId: 'DOCKER_CREDENTIALS', 
                     usernameVariable: 'USERNAME', 
                     passwordVariable: 'PASSWORD')]) {
-                sh '''
-                docker login -u $USERNAME -p $PASSWORD
-                cd client
-                DOCKER_BUILDKIT=1 docker build -t $USERNAME/social-media-web-application:frontend --push .
-                cd ..
-                cd server
-                docker buildx build --platform linux/amd64,linux/arm64 -t $USERNAME/social-media-web-application:backend --load .
-                cd ..
-                '''
+
+                        sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                        
+                        dir('client'){
+                        sh '''
+                        #docker buildx build --platform linux/amd64 -t $USERNAME/social-media-web-application:frontend --push .
+                        docker build -t $USERNAME/social-media-web-application:frontend .
+                        docker push $USERNAME/social-media-web-application:frontend
+                        '''
+                        }
+
+                        dir('server'){
+                        sh '''
+                        #docker buildx build --platform linux/amd64 -t $USERNAME/social-media-web-application:backend --push .
+                        build -t $USERNAME/social-media-web-application:backend .
+                        docker push $USERNAME/social-media-web-application:backend
+                        '''
+                        }
+                    }
                 }
             }
         }
