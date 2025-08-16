@@ -40,7 +40,12 @@ pipeline{
         }
         stage('cleanup'){
             steps{
-                sh "docker rmi $USERNAME/social-media-web-application:backend $USERNAME/social-media-web-application:frontend"
+                 withCredentials([usernamePassword(
+                    credentialsId: 'DOCKER_CREDENTIALS', 
+                    usernameVariable: 'USERNAME'
+                    )]) {
+                    sh "docker rmi $USERNAME/social-media-web-application:backend $USERNAME/social-media-web-application:frontend"
+                }
             }
         }
     }
