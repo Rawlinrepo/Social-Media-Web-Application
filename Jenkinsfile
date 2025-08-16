@@ -16,7 +16,7 @@ pipeline{
                 sh '''
                 docker login -u $USERNAME -p $PASSWORD
                 cd client
-                docker build -t $USERNAME/social-media-web-application:frontend --load .
+                DOCKER_BUILDERKIT docker build -t $USERNAME/social-media-web-application:frontend --load .
                 cd ..
                 cd server
                 docker buildx build -t $USERNAME/social-media-web-application:backend --load .
