@@ -42,7 +42,8 @@ pipeline{
             steps{
                  withCredentials([usernamePassword(
                     credentialsId: 'DOCKER_CREDENTIALS', 
-                    usernameVariable: 'USERNAME'
+                    usernameVariable: 'USERNAME',
+                    passwordVariable: 'PASSWORD'
                     )]) {
                     sh "docker rmi $USERNAME/social-media-web-application:backend $USERNAME/social-media-web-application:frontend"
                 }
