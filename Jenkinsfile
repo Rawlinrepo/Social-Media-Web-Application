@@ -14,12 +14,12 @@ pipeline{
                     usernameVariable: 'USERNAME', 
                     passwordVariable: 'PASSWORD')]) {
                 sh '''
-                docker login -u $USERNAME -p $PASSWORD'
+                docker login -u $USERNAME -p $PASSWORD
                 cd client
-                docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .'
+                docker buildx build --tag $USERNAME/social-media-web-application:frontend --push .
                 cd ..
                 cd server
-                docker buildx build --tag $USERNAME/social-media-web-application:backend --push .'
+                docker buildx build --tag $USERNAME/social-media-web-application:backend --push .
                 cd ..
                 '''
                 }
