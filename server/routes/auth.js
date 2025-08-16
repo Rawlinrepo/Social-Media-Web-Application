@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 //REGISTER
 router.post("/register", async (req, res) => {
     try {
-         console.log("Incoming body:", req.body);
+        console.log("Incoming body:", req.body);
         //generate new password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -21,7 +21,8 @@ router.post("/register", async (req, res) => {
         const user = await newUser.save();
         res.status(200).json(user);
     } catch (err) {
-        res.status(500).json(err)
+        console.error("❌ Error in /register:", err);    // shows full stack in docker logs
+        res.status(500).json({ error: err.message });    // returns readable message to client
     }
 });
 
